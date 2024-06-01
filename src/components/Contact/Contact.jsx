@@ -1,11 +1,13 @@
 import { IoCallSharp } from "react-icons/io5";
 import { IoPerson } from "react-icons/io5";
 import css from "./Contact.module.css";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
 
-export default function Contact({
-  contact: { id, name, number },
-  onDeleteContact,
-}) {
+export default function Contact({ contact: { id, name, number } }) {
+  const dispatch = useDispatch();
+  const handleDelete = () => dispatch(deleteContact(id));
+
   return (
     <div className={css.contact_container}>
       <div className={css.contact_name}>
@@ -20,7 +22,7 @@ export default function Contact({
 
       <button
         className={css.contact_button_delete}
-        onClick={() => onDeleteContact(id)}
+        onClick={() => handleDelete()}
       >
         Delete
       </button>
