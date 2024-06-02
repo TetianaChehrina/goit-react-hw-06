@@ -15,22 +15,18 @@ const contactsSlice = createSlice({
       reducer(state, action) {
         state.items.push(action.payload);
       },
+      prepare(newContact) {
+        return {
+          payload: {
+            id: nanoid(),
+            ...newContact,
+          },
+        };
+      },
     },
-    prepare(name, number) {
-      return {
-        payload: {
-          id: nanoid(),
-          name,
-          number,
-        },
-      };
+    deleteContact: (state, action) => {
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
-  },
-  deleteContact(state, action) {
-    const index = state.items.findIndex(
-      (contact) => contact.id === action.payload
-    );
-    state.items.splice(index, 1);
   },
 });
 export const { addContact, deleteContact } = contactsSlice.actions;

@@ -20,10 +20,7 @@ export default function Contact({ contact: { id, name, number } }) {
         <span>{number}</span>
       </div>
 
-      <button
-        className={css.contact_button_delete}
-        onClick={() => handleDelete()}
-      >
+      <button className={css.contact_button_delete} onClick={handleDelete}>
         Delete
       </button>
     </div>

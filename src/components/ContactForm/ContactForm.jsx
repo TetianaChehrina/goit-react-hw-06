@@ -23,14 +23,13 @@ const ContactForm = () => {
 
   const handleSubmit = (values, actions) => {
     values.id = nanoid();
-    dispatch(addContact(values.name, values.number));
+    dispatch(addContact(values));
     actions.resetForm();
   };
 
   return (
     <Formik
       initialValues={{
-        id: "",
         name: "",
         number: "",
       }}
